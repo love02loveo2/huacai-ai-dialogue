@@ -4,8 +4,8 @@ AI对话小助手结合了人工智能技术和检索增强生成（RAG）架构
 核心功能
 1. 智能对话系统
 ● 基于阿里云通义千问 qwen-max 模型构建
-● 支持自然语言交互，理解用户编程学习相关问题
-● 提供个性化的学习建议和指导
+● 支持自然语言交互，理解用户，学习相关问题
+● 提供个性化的输出
 2. 流式响应输出
 ● 实现类似ChatGPT的打字机效果
 ● 逐字逐句实时显示AI回答，提升用户体验
@@ -44,4 +44,10 @@ AI对话小助手结合了人工智能技术和检索增强生成（RAG）架构
 2. 报告生成：结构化信息输出
 3. RAG对话：基于知识库的精准问答
 4. 流式对话：实时逐字显示的交互体验
+效果：
+<img width="997" height="515" alt="image" src="https://github.com/user-attachments/assets/e4fa2e34-74bf-4d55-9fd0-5e7838351495" />
+<img width="1186" height="537" alt="image" src="https://github.com/user-attachments/assets/35dec67e-ce26-4371-831d-e1fd80f86e07" />
+<img width="983" height="496" alt="image" src="https://github.com/user-attachments/assets/4b578c68-b573-4358-b7bf-81cf0eb7fd3c" />
+
+
 
