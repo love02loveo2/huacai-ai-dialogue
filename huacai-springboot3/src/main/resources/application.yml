@@ -1,0 +1,176 @@
+# 项目相关配置
+huacai:
+  # 名称
+  name: huacai
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2025
+  # 文件路径 示例（ Windows配置D:/huacai/uploadPath，Linux配置 /home/huacai/uploadPath）
+  profile: D:/huacai/uploadPath
+  # 获取ip地址开关
+  addressEnabled: false
+  # 验证码类型 math 数字计算 char 字符验证
+  captchaType: math
+  # 👇 新增：AI知识库文档路径（必须是 file: 开头的绝对路径）
+  ai:
+    rag-docs-path: file:D:/qingzi/docs   # Windows 示例
+    # rag-docs-path: file:/opt/ai/docs   # Linux 示例
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+# 日志配置
+logging:
+  level:
+    com.huacai: debug
+    org.springframework: warn
+
+# 用户配置
+user:
+  password:
+    # 密码最大错误次数
+    maxRetryCount: 5
+    # 密码锁定时间（默认10分钟）
+    lockTime: 10
+
+# Spring配置
+spring:
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles:
+    active: druid
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认300分钟）
+  expireTime: 300
+
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.huacai.**.domain
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+
+## ================== Embedding 模型（必须用 DashScope）==================
+#langchain4j:
+#    # 社区提供的组件配置（非官方核心组件）
+#    community:
+#      # 阿里云灵积（DashScope）平台配置
+#      dashscope:
+#        # 聊天模型配置
+#        chat-model:
+#          # 指定使用的模型名称：text-embedding-v2（通义千问向量版本）
+#          model-name: text-embedding-v2
+#          # API密钥，用于身份验证和计费
+#          api-key: sk-0c6868e698fc458d90b82a3c20e58271
+#
+#  # ================== 聊天模型：优先使用 SiliconFlow ==================
+#    chat-model:
+#      # SiliconFlow 的 API Key
+#      api-key: ${SILICONFLOW_API_KEY:sk-xxzuarjapxzitbhjkudxgruoxvjzadunztkympfhrnnzjzzr}
+#      # SiliconFlow 的 OpenAI 兼容接口地址
+#      base-url: https://api.siliconflow.cn/v1
+#      # 指定模型（支持 Qwen、Llama3、DeepSeek 等）
+#      model-name: Qwen/Qwen2-72B-Instruct
+#      # 可选：设置 temperature
+#      temperature: 0.7
+#
+#    streaming-chat-model:
+#      api-key: ${SILICONFLOW_API_KEY:sk-xxzuarjapxzitbhjkudxgruoxvjzadunztkympfhrnnzjzzr}
+#      base-url: https://api.siliconflow.cn/v1
+#      model-name: Qwen/Qwen2-72B-Instruct
+#      temperature: 0.7
+#
+##   ❗ 注意：SiliconFlow 目前不提供嵌入模型（Embedding），需单独处理
+##     embedding-model:
+##       api-key: ${SILICONFLOW_API_KEY}
+##       base-url: https://api.siliconflow.cn/v1
+##       model-name: ???  # SiliconFlow 尚未公开 Embedding 模型
+
+
+
+
+
+
+
+# LangChain4j 框架的根配置节点
+langchain4j:
+  # 社区提供的组件配置（非官方核心组件）
+  community:
+    # 阿里云灵积（DashScope）平台配置
+    dashscope:
+      # 聊天模型配置
+      chat-model:
+        # 指定使用的模型名称：qwen-turbo（通义千问最强版本）
+        model-name: qwen-turbo
+        # API密钥，用于身份验证和计费
+        api-key: sk-0c6868e698fc458d90b82a3c20e58271
+      # 嵌入模型配置
+      # 用于将文本转换为向量表示，适用于语义搜索、文本相似度计算等场景
+      embedding-model:
+        # 该模型专门用于生成高质量的文本向量嵌入
+        model-name: text-embedding-v2
+        # 与聊天模型使用相同的API密钥
+        api-key: sk-0c6868e698fc458d90b82a3c20e58271
+      # 流式聊天模型配置
+      # 支持实时流式响应，适用于需要逐步显示生成结果的场景
+      streaming-chat-model:
+        # 指定使用的模型名称
+        model-name: qwen-turbo
+        # 与聊天模型使用相同的API密钥
+        api-key: sk-0c6868e698fc458d90b82a3c20e58271
